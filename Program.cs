@@ -93,36 +93,50 @@
 // 8 4 2 4
 // Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3.
 
-Console.WriteLine("Задайте количество строк двумерного массива:");
-int m = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Задайте количество столбцов двумерного массива:");
+Console.WriteLine("введите количество строк");
 int n = Convert.ToInt32(Console.ReadLine());
-double[,] DimArray = new double[m, n];
+Console.WriteLine("введите количество столбцов");
+int m = Convert.ToInt32(Console.ReadLine());
 
-void FillArray(double[,] matr)
-{ for (int i = 0; i < m; i++)
- { for (int j = 0; j < n; j++)
- matr[i,j] = Convert.ToDouble(new Random().Next(-100, 100)/10.0);
- }
-}
+int[,] numbers = new int[n, m];
 
-double AverageColumns(double[,] matr)
+FillArrayRandomNumbers(numbers);
+Console.WriteLine();
+PrintArray(numbers);
+
+for (int j = 0; j < numbers.GetLength(1); j++)
 {
-    double result = Convert.ToDouble(matr[1,m]/n);
-    
-    return result;
+    double avarage = 0;
+    for (int i = 0; i < numbers.GetLength(0); i++)
+    {
+        avarage = (avarage + numbers[i, j]);
+    }
+    avarage = avarage / n;
+    Console.Write(avarage + "; ");
 }
 
-void PrintArray(double[,] matr)
-{ for (int i = 0; i < m; i++)
- { for (int j = 0; j < n; j++)
-  Console.Write($"{matr[i, j]} ");
- Console.WriteLine();
- }
- }
 
-FillArray(DimArray);
-Console.WriteLine();
-AverageColumns(DimArray);
-Console.WriteLine();
-PrintArray(DimArray);
+
+void FillArrayRandomNumbers(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            array[i, j] = new Random().Next(0, 10);
+        }
+    }
+}
+
+void PrintArray(int[,] array)
+{
+
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i, j] + " ");
+        }
+        Console.WriteLine("");
+    }
+}

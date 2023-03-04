@@ -56,9 +56,10 @@ void PrintArray(int[,] myArray)
   { 
     for (int j = 0; j < myArray.GetLength(1); j++)
     {
-       Console.Write(myArray[i, j], " ");
-       Console.WriteLine();
+       Console.Write($"{myArray[i, j]} ");
+       
     }   
+    System.Console.WriteLine();
   }
 }
 FillArray(myArray);
